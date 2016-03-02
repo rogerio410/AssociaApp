@@ -15,7 +15,7 @@ public class ComunidadeJDBCDAO implements ComunidadeDAO{
 	private Connection conn;
 
 	@Override
-	public int inserir(Comunidade c) {
+	public Comunidade inserir(Comunidade c) {
 		conn = ConnectionFactory.getConnection();
 		
 		try {
@@ -23,12 +23,18 @@ public class ComunidadeJDBCDAO implements ComunidadeDAO{
 			String sql = "INSERT INTO comunidade(nome, idadeMinimaLider, tipo) values('"+c.getNome()+"', "
 					+c.getIdadeMinimaLider()+", '"+c.getTipo()+"')";
 			s.executeUpdate(sql);
+			
+			sql = "SELECT id FROM comunidade ORDER BY id DESC limit 1";
+			ResultSet rs = s.executeQuery(sql);
+			int id = rs.getInt("id");
+			c.setId(id);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Erro ao inserir Comunidade");
 		}
 		
-		return 0;
+		return c;
 	}
 
 	@Override
@@ -50,7 +56,11 @@ public class ComunidadeJDBCDAO implements ComunidadeDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			//conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return lista;
@@ -75,7 +85,11 @@ public class ComunidadeJDBCDAO implements ComunidadeDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			//conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

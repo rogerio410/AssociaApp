@@ -12,12 +12,12 @@ public class TesteInserirComunidade {
 		ComunidadeDAO dao = new ComunidadeJDBCDAO();
 		
 		Comunidade c = new Comunidade();
-		c.setNome("Altos 2");
-		c.setTipo(TipoComunidadeEnum.URBANA);
+		c.setNome("Macambira");
+		c.setTipo(TipoComunidadeEnum.RURAL);
 		c.setIdadeMinimaLider(22);;
 		
-		dao.inserir(c);
-		System.out.println("Inseriu com sucesso?!");
+		c = dao.inserir(c);
+		System.out.println("Inseriu com sucesso. Id gerado:"+c.getId());
 		
 	}
 

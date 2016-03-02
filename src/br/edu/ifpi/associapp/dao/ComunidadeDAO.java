@@ -6,7 +6,7 @@ import br.edu.ifpi.associapp.modelo.Comunidade;
 
 public interface ComunidadeDAO {
 	
-	public int inserir(Comunidade c);
+	public Comunidade inserir(Comunidade c);
 	public List<Comunidade> lista();
 	public Comunidade obter(int id);
 	public void remover(Comunidade c);
