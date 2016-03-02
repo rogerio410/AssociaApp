@@ -15,7 +15,7 @@ public class CriarAtualizarBD {
 				+ "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ " nome VARCHAR(100),"
 				+ " idadeMinimaLider INTEGER,"
-				+ " tipo INTEGER)";
+				+ " tipo VARCHAR(50))";
 		
 		try {
 			stmt.executeUpdate(sql_comunidade);

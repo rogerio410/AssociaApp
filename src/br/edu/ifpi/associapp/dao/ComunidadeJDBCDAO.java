@@ -21,7 +21,7 @@ public class ComunidadeJDBCDAO implements ComunidadeDAO{
 		try {
 			Statement s = conn.createStatement();
 			String sql = "INSERT INTO comunidade(nome, idadeMinimaLider, tipo) values('"+c.getNome()+"', "
-					+c.getIdadeMinimaLider()+","+c.getTipo().getId()+")";
+					+c.getIdadeMinimaLider()+", '"+c.getTipo()+"')";
 			s.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class ComunidadeJDBCDAO implements ComunidadeDAO{
 				c.setId(resultado.getInt("id"));
 				c.setNome(resultado.getString("nome"));
 				c.setIdadeMinimaLider(resultado.getInt("idadeMinimaLider"));
-				c.setTipo(TipoComunidadeEnum.fromInteger(resultado.getInt("tipo")));
+				c.setTipo(TipoComunidadeEnum.valueOf(resultado.getString("tipo")));
 				lista.add(c);
 			}
 		} catch (Exception e) {

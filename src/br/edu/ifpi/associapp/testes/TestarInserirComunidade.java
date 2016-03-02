@@ -13,9 +13,9 @@ public class TestarInserirComunidade {
 		
 		//Objeto
 		Comunidade c = new Comunidade();
-		c.setNome("BEC");
+		c.setNome("CAITITU");
 		c.setIdadeMinimaLider(18);
-		c.setTipo(TipoComunidadeEnum.URBANA);
+		c.setTipo(TipoComunidadeEnum.RURAL);
 		
 		dao.inserir(c);
 		
